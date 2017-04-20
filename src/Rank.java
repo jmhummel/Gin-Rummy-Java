@@ -11,7 +11,7 @@ public enum Rank {
     SEVEN (7, 7, "seven", "7"),
     EIGHT (8, 8, "eight", "8"),
     NINE (9, 9, "nine", "9"),
-    TEN (10, 10, "ten", "10"),
+    TEN (10, 10, "ten", "T"),
     JACK (11, 10, "jack", "J"),
     QUEEN (12, 10, "queen", "Q"),
     KING (13, 10, "king", "K");
@@ -30,5 +30,14 @@ public enum Rank {
 
     public String toString() {
         return symbol;
+    }
+
+    public static Rank fromString(char s) throws Exception {
+        for (Rank rank : Rank.values()) {
+            if (s == rank.symbol) {
+                return rank;
+            }
+        }
+        throw new Exception("Cannot convert: " + s + " from String to Rank");
     }
 }

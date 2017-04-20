@@ -12,21 +12,39 @@ public class Game {
     private ArrayList<Card> p2Hand;
     private ArrayList<Card>[] hands;
     public static final int HAND_SIZE = 10;
+    private boolean knocked;
+    private Player[] players;
+    private int turn;
 
     public Game() {
         deck = new Deck();
+        knocked = false;
         discard = new ArrayList<>();
         p1Hand = new ArrayList<>();
         p2Hand = new ArrayList<>();
         hands = new ArrayList[]{p1Hand, p2Hand};
+        players = new Player[]{ new HumanPlayer(), new AIRandomPlayer() };
+        turn = 0;
 
-        for (ArrayList<Card> hand : hands) {
-            IntStream.range(0, HAND_SIZE).forEach(
-                    i -> hand.add(deck.draw())
-            );
+        IntStream.range(0, HAND_SIZE).forEach(
+                i -> {
+                    for (ArrayList<Card> hand : hands) {
+                        hand.add(deck.draw());
+                    }
+                }
+        );
+
+        discard.add(0, deck.draw());
+
+        while (!knocked && deck.size() > 2) {
+            Player p = players[turn % players.length];
+            // Draw
+            // Discard / Knock
+            Action action = p.promptAction(null, null);
+
         }
 
-        discard.add(deck.draw());
+
     }
 
     public String toString() {

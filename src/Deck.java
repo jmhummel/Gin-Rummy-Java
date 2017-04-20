@@ -28,4 +28,8 @@ public class Deck {
     public Card draw() {
         return cards.remove(0);
     }
+
+    public int size() {
+        return cards.size();
+    }
 }

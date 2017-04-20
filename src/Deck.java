@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 /**
@@ -18,5 +19,13 @@ public class Deck {
 
     public String toString() {
         return cards.stream().map(Object::toString).collect(Collectors.joining(", "));
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+    public Card draw() {
+        return cards.remove(0);
     }
 }

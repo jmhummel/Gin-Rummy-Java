@@ -3,11 +3,18 @@
  */
 public class GinRummy {
 
-    public Action[] getAvailableActions(State state) {
+    public static Action[] getAvailableActions(State state) {
         if (state.getHand().size() == 10) {
             return new Action[] {Action.DRAW_STOCK, Action.DRAW_DISCARD};
+        } else if (isHandKnockable(state)) {
+            return new Action[]{Action.KNOCK, Action.DISCARD};
         } else {
             return new Action[] {Action.DISCARD};
         }
+    }
+
+    public static boolean isHandKnockable(State state) {
+        // TODO: logic
+        return false;
     }
 }

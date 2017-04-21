@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by jeremy on 4/20/17.
@@ -8,11 +10,15 @@ public class HumanPlayer implements Player {
     @Override
     public Action promptAction(Action[] actions, State state) {
         System.out.println("Hand: " + state.getHand());
-        System.out.println("Discard Pile: " + state.getDiscard().get(0));
+        if (state.getDiscard().size() > 0) {
+            System.out.println("Discard Pile: " + state.getDiscard().get(0));
+        } else {
+            System.out.println("Discard Pile: Empty");
+        }
 
         Action a = null;
         while (a == null) {
-            System.out.println("Please choose an action: " + actions);
+            System.out.println("Please choose an action: " + Stream.of(actions).map(Action::toString).collect(Collectors.joining(", ")));
             Scanner reader = new Scanner(System.in);
 
             String s = reader.next();

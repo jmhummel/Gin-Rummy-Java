@@ -23,4 +23,18 @@ public class Card {
         Suit suit = Suit.fromString(s.charAt(1));
         return new Card(rank, suit);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {return true;}
+        if (obj == null) {return false;}
+        if (!(obj instanceof Card)) {return false;}
+        Card c = (Card) obj;
+        return (this.suit == c.suit && this.rank == c.rank);
+    }
+
+    @Override
+    public int hashCode() {
+        return rank.ordinal() * 13 + suit.ordinal();
+    }
 }

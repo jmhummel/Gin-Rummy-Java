@@ -2,16 +2,16 @@
  * Created by jeremy on 4/19/17.
  */
 public enum Suit {
-    CLUB ("clubs", "C", "♣️"),
-    DIAMOND ("diamonds", "D", "♦️"),
-    HEART ("hearts", "H", "♥️"),
-    SPADE ("spades", "S", "♠️");
+    CLUB ("clubs", 'C', "♣️"),
+    DIAMOND ("diamonds", 'D', "♦️"),
+    HEART ("hearts", 'H', "♥️"),
+    SPADE ("spades", 'S', "♠️");
 
     private final String name;
-    private final String letter;
+    private final char letter;
     private final String symbol;
 
-    Suit(String name, String letter, String symbol) {
+    Suit(String name, char letter, String symbol) {
         this.name = name;
         this.letter = letter;
         this.symbol = symbol;

@@ -17,10 +17,11 @@ public class Game {
 
     public Game() {
         deck = new Deck();
+        deck.shuffle();
         knocked = false;
         discard = new ArrayList<>();
-        hands = new ArrayList[]{ new ArrayList(), new ArrayList() };
-        players = new Player[]{ new HumanPlayer(), new AIRandomPlayer() };
+        hands = new ArrayList[]{new ArrayList(), new ArrayList()};
+        players = new Player[]{new HumanPlayer(), new AIRandomPlayer()};
         turn = 0;
 
         IntStream.range(0, HAND_SIZE).forEach(
@@ -32,7 +33,9 @@ public class Game {
         );
 
         discard.add(0, deck.draw());
+    }
 
+    public void run() {
         while (!knocked && deck.size() > 2) {
             Player p = players[turn % players.length];
             ArrayList<Card> hand = hands[turn % players.length];
@@ -68,9 +71,8 @@ public class Game {
                     break;
             }
 
+            turn++;
         }
-
-
     }
 
     public String toString() {

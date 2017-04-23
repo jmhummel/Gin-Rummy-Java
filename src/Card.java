@@ -1,7 +1,7 @@
 /**
  * Created by jeremy on 4/19/17.
  */
-public class Card {
+public class Card implements Comparable{
     private final Rank rank;
     private final Suit suit;
 
@@ -35,6 +35,12 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return rank.ordinal() * 13 + suit.ordinal();
+        return suit.ordinal() * 13 + rank.ordinal();
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        return ((Integer)hashCode()).compareTo(o.hashCode());
     }
 }
